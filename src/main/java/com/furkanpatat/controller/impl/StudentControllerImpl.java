@@ -1,5 +1,7 @@
 package com.furkanpatat.controller.impl;
 import com.furkanpatat.controller.IStudentController;
+import com.furkanpatat.dto.DtoStudent;
+import com.furkanpatat.dto.DtoStudentIU;
 import com.furkanpatat.entities.Student;
 import com.furkanpatat.services.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +17,19 @@ public class StudentControllerImpl implements IStudentController {
 
     @Override
     @PostMapping("/save")
-    public Student saveStudent(@RequestBody Student student) {
-        return studentService.saveStudent(student);
+    public DtoStudent saveStudent(@RequestBody DtoStudentIU dtoStudentIU) {
+        return studentService.saveStudent(dtoStudentIU);
     }
 
     @Override
     @GetMapping(path = "/list")
-    public List<Student> getAllStudents() {
+    public List<DtoStudent> getAllStudents() {
         return studentService.getAllStudents();
     }
 
     @GetMapping(path = "/list/{id}")
     @Override
-    public Student getStudentByID(@PathVariable(name = "id") Integer id) {
+    public DtoStudent getStudentByID(@PathVariable(name = "id") Integer id) {
         return studentService.getStudentByID(id);
     }
 
@@ -39,7 +41,7 @@ public class StudentControllerImpl implements IStudentController {
 
     @PutMapping(path = "update/{id}")
     @Override
-    public Student updateStudent(@PathVariable(name = "id") Integer id,@RequestBody Student updatedStudent) {
-        return studentService.updateStudent(id,updatedStudent);
+    public DtoStudent updateStudent(@PathVariable(name = "id") Integer id,@RequestBody DtoStudentIU dtoStudentIU) {
+        return studentService.updateStudent(id,dtoStudentIU);
     }
 }
